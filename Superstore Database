@@ -27,24 +27,24 @@ VALUES
 
 select * from superstore;
 
-#Use a SELECT statement to order the times by price.
+# Use a SELECT statement to order the times by price.
 select category, item_name, max(price)
 from superstore
 group by price
 order by price desc;
 
-#Show statistics about the prices, stock quantities, and categories.
+# Show statistics about the prices, stock quantities, and categories.
 select category, count(category), sum(stock_quantity), avg(price)
 from superstore
 group by category;
 
-#Show statistics about the item ratings in maximum and minimum for each category.
+# Show statistics about the item ratings in maximum and minimum for each category.
 select category, max(average_rating), min(average_rating)
 from superstore
 group by category
 order by average_rating;
 
-#Show a statistic about the ratings for items in the category of "Kitchen Supplies".
+# Show a statistic about the ratings for items in the category of "Kitchen Supplies".
 select item_name, avg(average_rating)
 from superstore
 where category="Kitchen Supplies"
