@@ -1,0 +1,44 @@
+# This project reveals insights about movie stars and their paired project series.
+
+CREATE TABLE movie_stars (id INTEGER PRIMARY KEY,
+    full_name TEXT,
+    began_acting_in INTEGER);
+
+INSERT INTO movie_stars (full_name, began_acting_in) 
+    VALUES ("Tom Holland", "2006");
+INSERT INTO movie_stars (full_name, began_acting_in) 
+    VALUES ("Scarlett Johansson", "1994");
+INSERT INTO movie_stars (full_name, began_acting_in) 
+    VALUES ("Chris Pine", "2002");
+INSERT INTO movie_stars (full_name, began_acting_in) 
+    VALUES ("Anne Hathaway", "1999");
+
+CREATE TABLE movie_stars_info (id INTEGER PRIMARY KEY,
+    celebrity_id INTEGER,
+    relationship_status TEXT,
+    movie_title TEXT);
+
+INSERT INTO movie_stars_info (celebrity_id, relationship_status, movie_title) 
+    VALUES ("1", "In A Relationship", "Avengers Series");
+INSERT INTO movie_stars_info (celebrity_id, relationship_status, movie_title) 
+    VALUES ("2", "Married" , "Avengers Series");
+INSERT INTO movie_stars_info (celebrity_id, relationship_status, movie_title) 
+    VALUES ("3", "Single", "Princess Diaries 2");
+INSERT INTO movie_stars_info (celebrity_id, relationship_status, movie_title) 
+    VALUES ("4", "Married","Princess Diaries");
+
+CREATE TABLE project_sequel (id INTEGER PRIMARY KEY,
+    series1_id INTEGER,
+    series2_id INTEGER);
+
+INSERT INTO project_sequel (series1_id, series2_id) 
+    VALUES (1,2);
+INSERT INTO project_sequel (series1_id, series2_id)
+    VALUES (3,4);
+
+SELECT b.movie_title, a.movie_title from project_sequel
+    join movie_stars_info a
+    on project_sequel.series1_id=a.id
+    join movie_stars_info b
+    on project_sequel.series2_id=b.id;
+
